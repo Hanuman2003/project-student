@@ -140,5 +140,5 @@ registerForm.addEventListener("submit", function (e) {
     generatedOTP = "";
     sendOtpBtn.disabled = false;
 
-    window.location.href = "login.html";
+    window.location.href = "code.html/login.html";
 });

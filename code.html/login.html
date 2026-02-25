@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | AKT Learning Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../code.css/login.css">
+
+    <!-- JS -->
+    <script src="../script.js/login.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader">
+        <h1 id="siteTitle">AKT Learning Hub</h1>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main id="loginMain">
+
+        <section id="loginSection">
+
+            <h2 id="loginHeading">Login to Your Account</h2>
+
+            <form id="loginForm" autocomplete="off">
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="loginEmail">
+                </div>
+
+                <p class="or-text">OR</p>
+
+                <!-- Mobile -->
+                <div class="form-group">
+                    <label for="loginMobile">Mobile Number</label>
+                    <input type="tel"
+                           id="loginMobile"
+                           name="loginMobile"
+                           maxlength="10"
+                           pattern="[0-9]{10}">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group password-group">
+                    <label for="loginPassword">Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginPassword" name="loginPassword" required>
+                        <span class="toggle-password" data-target="loginPassword">👁</span>
+                    </div>
+                </div>
+
+                <!-- OTP -->
+                <div class="form-group">
+                    <label for="loginOtp">Enter OTP</label>
+                    <input type="text" id="loginOtp" name="loginOtp" required>
+                    <button type="button" id="loginSendOtpBtn">Send OTP</button>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" id="loginBtn">Login</button>
+
+            </form>
+
+            <p id="registerRedirect">
+                Don't have an account?
+                <a href="index.html">Register</a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="mainFooter">
+        <p>© 2026 AKT Learning Hub</p>
+    </footer>
+
+</body>
+</html>

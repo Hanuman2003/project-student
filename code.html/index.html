@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | AKT Learning Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../code.css/index.css">
+
+    <!-- JS -->
+    <script src="../script.js/index.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader">
+        <h1 id="siteTitle">AKT Learning Hub</h1>
+    </header>
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="mainContent">
+
+        <section id="registerSection">
+
+            <h2 id="registerHeading">Create Your Account</h2>
+
+            <form id="registerForm" autocomplete="off">
+
+                <!-- ================= ROLE SELECTION ================= -->
+                <fieldset id="roleSelection">
+                    <legend>Select Your Role</legend>
+
+                    <div class="form-group">
+                        <input type="radio" id="adminRole" name="userRole" value="admin" required>
+                        <label for="adminRole">Admin</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="radio" id="parentRole" name="userRole" value="parent">
+                        <label for="parentRole">Parent</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="radio" id="studentRole" name="userRole" value="student">
+                        <label for="studentRole">Student</label>
+                    </div>
+                </fieldset>
+
+
+                <!-- ================= PERSONAL DETAILS ================= -->
+                <fieldset id="personalDetails">
+                    <legend>Personal Details</legend>
+
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input type="text" id="middleName" name="middleName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </fieldset>
+
+
+                <!-- ================= CONTACT DETAILS ================= -->
+                <fieldset id="contactDetails">
+                    <legend>Contact Details</legend>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <input type="tel"
+                               id="mobileNumber"
+                               name="mobileNumber"
+                               maxlength="10"
+                               pattern="[0-9]{10}"
+                               required>
+                    </div>
+                </fieldset>
+
+
+                <!-- ================= SECURITY DETAILS ================= -->
+                <fieldset id="securityDetails">
+                    <legend>Security Details</legend>
+
+                    <!-- Password -->
+                    <div class="form-group password-group">
+                        <label for="password">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" required>
+                            <span class="toggle-password" data-target="password">👁</span>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group password-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                            <span class="toggle-password" data-target="confirmPassword">👁</span>
+                        </div>
+                    </div>
+
+                    <!-- OTP -->
+                    <div class="form-group">
+                        <label for="otp">Enter OTP</label>
+                        <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+                        <button type="button" id="sendOtpBtn">Send OTP</button>
+                    </div>
+
+                </fieldset>
+
+                <!-- Register Button -->
+                <button type="submit" id="registerBtn">Register</button>
+
+            </form>
+
+            <p id="loginRedirect">
+                Already have an account?
+                <a href="login.html" id="loginLink">Login</a>
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="mainFooter">
+        <p>© 2026 AKT Learning Hub</p>
+    </footer>
+
+</body>
+</html>

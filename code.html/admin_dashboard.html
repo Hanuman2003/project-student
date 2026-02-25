@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | AKT Learning Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Orbitron Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../code.css/admin.css">
+
+    <!-- JS -->
+    <script src="../script.js/admin.js" defer></script>
+</head>
+
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside id="sidebar">
+
+        <div id="sidebarHeader">
+            <h2 id="adminLogo">AKT Admin</h2>
+        </div>
+
+        <nav id="sidebarNav">
+            <ul>
+                <li><a href="#" class="active" id="dashboardLink">Dashboard</a></li>
+                <li><a href="#">Manage Students</a></li>
+                <li><a href="#">Manage Parents</a></li>
+                <li><a href="#">Manage Subjects</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#" id="settingsLink">Settings</a></li>
+                <li><a href="index.html" id="logoutBtn">Logout</a></li>
+            </ul>
+        </nav>
+
+    </aside>
+
+
+    <!-- ===== MAIN AREA ===== -->
+    <main id="adminMain">
+
+        <!-- ===== HEADER ===== -->
+        <header id="adminHeader">
+            <h1 id="pageTitle">Dashboard Overview</h1>
+
+            <div id="adminWelcome">
+                <span>Welcome, Admin</span>
+
+                <button id="revokeAccessBtn">
+                    Revoke All Admin Access
+                </button>
+            </div>
+        </header>
+
+
+        <!-- ===== DASHBOARD CONTENT ===== -->
+        <div id="dashboardContent">
+
+            <!-- ===== STAT CARDS ===== -->
+            <section id="statsSection">
+
+                <div class="statCard">
+                    <h3>Total Students</h3>
+                    <p id="totalStudents">0</p>
+                </div>
+
+                <div class="statCard">
+                    <h3>Total Parents</h3>
+                    <p id="totalParents">0</p>
+                </div>
+
+                <div class="statCard">
+                    <h3>Total Subjects</h3>
+                    <p id="totalSubjects">0</p>
+                </div>
+
+                <div class="statCard">
+                    <h3>Active Users</h3>
+                    <p id="activeUsers">0</p>
+                </div>
+
+            </section>
+
+
+            <!-- ===== RECENT REGISTRATIONS ===== -->
+            <section id="recentSection">
+
+                <h2>Recent Registrations</h2>
+
+                <table id="recentTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="recentTableBody">
+                        <!-- JS inserts data -->
+                    </tbody>
+                </table>
+
+            </section>
+
+        </div>
+
+
+        <!-- ===== SETTINGS CONTENT (Hidden Initially) ===== -->
+        <div id="settingsContent" style="display: none;">
+
+            <section id="adminSettings">
+
+                <h2>Change Admin Password</h2>
+
+                <div class="settingsBox">
+
+                    <input type="password" id="currentPassword" placeholder="Current Password">
+
+                    <input type="password" id="newPassword" placeholder="New Password">
+
+                    <input type="password" id="confirmNewPassword" placeholder="Confirm New Password">
+
+                    <button id="changePasswordBtn">Update Password</button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

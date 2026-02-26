@@ -40,11 +40,6 @@ sendOtpBtn.addEventListener("click", function () {
         return;
     }
 
-    if (password.value.trim() === "" || confirmPassword.value.trim() === "") {
-        alert("Enter Password and Confirm Password first.");
-        return;
-    }
-
     if (!isStrongPassword(password.value)) {
         alert("Password must be at least 6 characters long, include 1 uppercase letter and 1 number.");
         return;
@@ -104,21 +99,7 @@ registerForm.addEventListener("submit", function (e) {
         password: password.value.trim()
     };
 
-    // ================= DUPLICATE CHECK =================
-    const emailExists = users.some(user => user.email === newUser.email);
-    const mobileExists = users.some(user => user.mobile === newUser.mobile);
-
-    if (emailExists) {
-        alert("Email already registered.");
-        return;
-    }
-
-    if (mobileExists) {
-        alert("Mobile number already registered.");
-        return;
-    }
-
-    // ================= NEW: MULTIPLE ADMIN RESTRICTION =================
+    // ================= ADMIN RESTRICTION =================
     if (newUser.role === "admin") {
 
         const adminExists = users.some(user => user.role === "admin");
@@ -127,10 +108,37 @@ registerForm.addEventListener("submit", function (e) {
             alert("Admin account already exists. Multiple admins are not allowed.");
             return;
         }
-    }
-    // ================================================================
 
-    users.push(newUser);
+        users.push(newUser);
+    }
+
+    // ================= PARENT/STUDENT LINKED CREATION =================
+    else if (newUser.role === "parent" || newUser.role === "student") {
+
+        // Same role duplicate check
+        const sameRoleExists = users.some(user =>
+            user.email === newUser.email &&
+            user.role === newUser.role
+        );
+
+        if (sameRoleExists) {
+            alert("This role already exists with this email.");
+            return;
+        }
+
+        const oppositeRole = newUser.role === "parent" ? "student" : "parent";
+
+        const linkedAccount = {
+            role: oppositeRole,
+            firstName: newUser.firstName,
+            email: newUser.email,
+            mobile: newUser.mobile,
+            password: newUser.password + (oppositeRole === "student" ? "S1" : "P1")
+        };
+
+        users.push(newUser);
+        users.push(linkedAccount);
+    }
 
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("userRole", selectedRole.value);

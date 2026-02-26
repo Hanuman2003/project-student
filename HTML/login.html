@@ -17,72 +17,89 @@
 
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header id="mainHeader">
-        <h1 id="siteTitle">AKT Learning Hub</h1>
-    </header>
+<header id="mainHeader">
+    <h1 id="siteTitle">AKT Learning Hub</h1>
+</header>
 
-    <!-- ===== MAIN ===== -->
-    <main id="loginMain">
+<main id="loginMain">
 
-        <section id="loginSection">
+<section id="loginSection">
 
-            <h2 id="loginHeading">Login to Your Account</h2>
+<h2 id="loginHeading">Login to Your Account</h2>
 
-            <form id="loginForm" autocomplete="off">
+<form id="loginForm" autocomplete="off">
 
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" name="loginEmail">
-                </div>
+    <!-- ================= ROLE SELECTION (TOP) ================= -->
+    <fieldset id="loginRoleSelection">
+        <legend>Select Your Role</legend>
 
-                <p class="or-text">OR</p>
+        <div class="form-group">
+            <input type="radio" id="loginAdmin" name="loginRole" value="admin" required>
+            <label for="loginAdmin">Admin</label>
+        </div>
 
-                <!-- Mobile -->
-                <div class="form-group">
-                    <label for="loginMobile">Mobile Number</label>
-                    <input type="tel"
-                           id="loginMobile"
-                           name="loginMobile"
-                           maxlength="10"
-                           pattern="[0-9]{10}">
-                </div>
+        <div class="form-group">
+            <input type="radio" id="loginParent" name="loginRole" value="parent">
+            <label for="loginParent">Parent</label>
+        </div>
 
-                <!-- Password -->
-                <div class="form-group password-group">
-                    <label for="loginPassword">Password</label>
-                    <div class="password-wrapper">
-                        <input type="password" id="loginPassword" name="loginPassword" required>
-                        <span class="toggle-password" data-target="loginPassword">👁</span>
-                    </div>
-                </div>
+        <div class="form-group">
+            <input type="radio" id="loginStudent" name="loginRole" value="student">
+            <label for="loginStudent">Student</label>
+        </div>
+    </fieldset>
+    <!-- ========================================================= -->
 
-                <!-- OTP -->
-                <div class="form-group">
-                    <label for="loginOtp">Enter OTP</label>
-                    <input type="text" id="loginOtp" name="loginOtp" required>
-                    <button type="button" id="loginSendOtpBtn">Send OTP</button>
-                </div>
+    <!-- Email -->
+    <div class="form-group">
+        <label for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" name="loginEmail">
+    </div>
 
-                <!-- Login Button -->
-                <button type="submit" id="loginBtn">Login</button>
+    <p class="or-text">OR</p>
 
-            </form>
+    <!-- Mobile -->
+    <div class="form-group">
+        <label for="loginMobile">Mobile Number</label>
+        <input type="tel"
+               id="loginMobile"
+               name="loginMobile"
+               maxlength="10"
+               pattern="[0-9]{10}">
+    </div>
 
-            <p id="registerRedirect">
-                Don't have an account?
-                <a href="../index.html">Register</a>
-            </p>
+    <!-- Password -->
+    <div class="form-group password-group">
+        <label for="loginPassword">Password</label>
+        <div class="password-wrapper">
+            <input type="password" id="loginPassword" name="loginPassword" required>
+            <span class="toggle-password" data-target="loginPassword">👁</span>
+        </div>
+    </div>
 
-        </section>
+    <!-- OTP -->
+    <div class="form-group">
+        <label for="loginOtp">Enter OTP</label>
+        <input type="text" id="loginOtp" name="loginOtp" required>
+        <button type="button" id="loginSendOtpBtn">Send OTP</button>
+    </div>
 
-    </main>
+    <!-- Login Button -->
+    <button type="submit" id="loginBtn">Login</button>
 
-    <!-- ===== FOOTER ===== -->
-    <footer id="mainFooter">
-        <p>© 2026 AKT Learning Hub</p>
-    </footer>
+</form>
+
+<p id="registerRedirect">
+    Don't have an account?
+    <a href="../index.html">Register</a>
+</p>
+
+</section>
+</main>
+
+<footer id="mainFooter">
+    <p>© 2026 AKT Learning Hub</p>
+</footer>
 
 </body>
 </html>

@@ -20,8 +20,27 @@ toggleButtons.forEach(button => {
     });
 });
 
+// ================= RESET IF ROLE CHANGES =================
+const roleRadios = document.querySelectorAll('input[name="loginRole"]');
+
+roleRadios.forEach(radio => {
+    radio.addEventListener("change", function () {
+        generatedLoginOTP = "";
+        authenticatedUser = null;
+        loginSendOtpBtn.disabled = false;
+        loginOtp.value = "";
+    });
+});
+
 // ================= OTP GENERATION =================
 loginSendOtpBtn.addEventListener("click", function () {
+
+    const selectedRole = document.querySelector('input[name="loginRole"]:checked');
+
+    if (!selectedRole) {
+        alert("Please select your role first.");
+        return;
+    }
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -39,12 +58,14 @@ loginSendOtpBtn.addEventListener("click", function () {
         return;
     }
 
+    // 🔐 Role + Identity Match
     const foundUser = users.find(user =>
-        user.email === enteredEmail || user.mobile === enteredMobile
+        (user.email === enteredEmail || user.mobile === enteredMobile) &&
+        user.role === selectedRole.value
     );
 
     if (!foundUser) {
-        alert("User not found. Please register first.");
+        alert("User not found with selected role.");
         return;
     }
 
@@ -93,17 +114,16 @@ loginForm.addEventListener("submit", function (e) {
         localStorage.setItem("adminSessionVersion", currentVersion);
 
         alert("Admin Login Successful!");
-
         window.location.href = "admin_dashboard.html";
     }
 
     else if (authenticatedUser.role === "parent") {
-        alert("Login Successful!");
+        alert("Parent Login Successful!");
         window.location.href = "parent_dashboard.html";
     }
 
     else if (authenticatedUser.role === "student") {
-        alert("Login Successful!");
+        alert("Student Login Successful!");
         window.location.href = "student_dashboard.html";
     }
 });

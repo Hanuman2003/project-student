@@ -191,3 +191,45 @@ input:focus {
         padding: 120px 5% 50px 5%;
     }
 }
+
+/* ===== LOGIN ROLE SELECTION ===== */
+
+#loginRoleSelection {
+    margin-bottom: 25px;
+    padding: 18px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+#loginRoleSelection legend {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #38bdf8;
+}
+
+#loginRoleSelection .form-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#loginRoleSelection input[type="radio"] {
+    accent-color: #38bdf8;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#loginRoleSelection label {
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: 0.3s;
+}
+
+#loginRoleSelection label:hover {
+    color: #38bdf8;
+}

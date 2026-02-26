@@ -101,15 +101,17 @@ loginSendOtpBtn.addEventListener("click", function () {
 
         foundUser = users.find(user =>
             user.role === "parent" &&
-            (
-                user.email === enteredEmail ||
-                user.mobile === enteredMobile
-            )
+            (user.email === enteredEmail || user.mobile === enteredMobile)
         );
     }
 
     // ================= ADMIN LOGIN =================
     else if (selectedRole.value === "admin") {
+
+        if (!emailPattern.test(enteredEmail)) {
+            alert("Enter valid email.");
+            return;
+        }
 
         foundUser = users.find(user =>
             user.role === "admin" &&
@@ -151,7 +153,31 @@ loginForm.addEventListener("submit", function (e) {
         return;
     }
 
+    // ================= STRICT SECURITY SYSTEM =================
+
+    const sessionToken = crypto.randomUUID();
+    const activeSessionId = crypto.randomUUID();
+
+    authenticatedUser.sessionToken = sessionToken;
+    authenticatedUser.activeSessionId = activeSessionId;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users = users.map(user =>
+        user.email === authenticatedUser.email &&
+        user.role === authenticatedUser.role
+            ? authenticatedUser
+            : user
+    );
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    localStorage.setItem("sessionToken", sessionToken);
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("loggedInUser", JSON.stringify(authenticatedUser));
     localStorage.setItem("userRole", authenticatedUser.role);
+
+    // ================= REDIRECT =================
 
     if (authenticatedUser.role === "admin") {
         window.location.href = "admin_dashboard.html";

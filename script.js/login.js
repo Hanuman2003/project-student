@@ -9,6 +9,10 @@ const loginSendOtpBtn = document.getElementById("loginSendOtpBtn");
 let generatedLoginOTP = "";
 let authenticatedUser = null;
 
+// ================= VALIDATION PATTERNS =================
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const mobilePattern = /^[0-9]{10}$/;
+
 // ================= PASSWORD TOGGLE =================
 const toggleButtons = document.querySelectorAll(".toggle-password");
 
@@ -53,19 +57,45 @@ loginSendOtpBtn.addEventListener("click", function () {
         return;
     }
 
+    // ✅ Format validation
+    if (enteredEmail !== "" && !emailPattern.test(enteredEmail)) {
+        alert("Invalid Email format.");
+        return;
+    }
+
+    if (enteredMobile !== "" && !mobilePattern.test(enteredMobile)) {
+        alert("Invalid 10-digit Mobile Number.");
+        return;
+    }
+
     if (enteredPassword === "") {
         alert("Enter Password.");
         return;
     }
 
-    // 🔐 Role + Identity Match
-    const foundUser = users.find(user =>
-        (user.email === enteredEmail || user.mobile === enteredMobile) &&
-        user.role === selectedRole.value
-    );
+    // ✅ Strict identity matching
+    let foundUser = null;
+
+    if (enteredEmail !== "" && enteredMobile !== "") {
+        foundUser = users.find(user =>
+            user.role === selectedRole.value &&
+            user.email === enteredEmail &&
+            user.mobile === enteredMobile
+        );
+    } else if (enteredEmail !== "") {
+        foundUser = users.find(user =>
+            user.role === selectedRole.value &&
+            user.email === enteredEmail
+        );
+    } else {
+        foundUser = users.find(user =>
+            user.role === selectedRole.value &&
+            user.mobile === enteredMobile
+        );
+    }
 
     if (!foundUser) {
-        alert("User not found with selected role.");
+        alert("No registered account found with selected role.");
         return;
     }
 
@@ -98,10 +128,8 @@ loginForm.addEventListener("submit", function (e) {
         return;
     }
 
-    // Save role
     localStorage.setItem("userRole", authenticatedUser.role);
 
-    // ================= ADMIN SESSION SYSTEM =================
     if (authenticatedUser.role === "admin") {
 
         let currentVersion = localStorage.getItem("adminAccessVersion");

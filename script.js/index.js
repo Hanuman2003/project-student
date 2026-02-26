@@ -5,6 +5,7 @@ const confirmPassword = document.getElementById("confirmPassword");
 const otpInput = document.getElementById("otp");
 const sendOtpBtn = document.getElementById("sendOtpBtn");
 const mobileInput = document.getElementById("mobileNumber");
+const emailInput = document.getElementById("email");
 
 let generatedOTP = "";
 
@@ -18,6 +19,10 @@ toggleButtons.forEach(button => {
         inputField.type = inputField.type === "password" ? "text" : "password";
     });
 });
+
+// ================= VALIDATION PATTERNS =================
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const mobilePattern = /^[0-9]{10}$/;
 
 // ================= PASSWORD STRENGTH CHECK =================
 function isStrongPassword(pass) {
@@ -35,8 +40,13 @@ sendOtpBtn.addEventListener("click", function () {
         return;
     }
 
-    if (mobileInput.value.length !== 10) {
-        alert("Enter valid 10-digit mobile number.");
+    if (!emailPattern.test(emailInput.value.trim())) {
+        alert("Enter a valid Email Address.");
+        return;
+    }
+
+    if (!mobilePattern.test(mobileInput.value.trim())) {
+        alert("Enter a valid 10-digit Mobile Number.");
         return;
     }
 
@@ -69,8 +79,13 @@ registerForm.addEventListener("submit", function (e) {
         return;
     }
 
-    if (mobileInput.value.length !== 10) {
-        alert("Mobile number must be 10 digits.");
+    if (!emailPattern.test(emailInput.value.trim())) {
+        alert("Enter a valid Email Address.");
+        return;
+    }
+
+    if (!mobilePattern.test(mobileInput.value.trim())) {
+        alert("Enter a valid 10-digit Mobile Number.");
         return;
     }
 
@@ -94,7 +109,7 @@ registerForm.addEventListener("submit", function (e) {
     const newUser = {
         role: selectedRole.value,
         firstName: document.getElementById("firstName").value.trim(),
-        email: document.getElementById("email").value.trim(),
+        email: emailInput.value.trim(),
         mobile: mobileInput.value.trim(),
         password: password.value.trim()
     };
@@ -115,7 +130,6 @@ registerForm.addEventListener("submit", function (e) {
     // ================= PARENT/STUDENT LINKED CREATION =================
     else if (newUser.role === "parent" || newUser.role === "student") {
 
-        // Same role duplicate check
         const sameRoleExists = users.some(user =>
             user.email === newUser.email &&
             user.role === newUser.role

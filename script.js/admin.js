@@ -84,7 +84,7 @@ if (logoutBtn) {
         localStorage.removeItem("userRole");
         localStorage.removeItem("adminSessionVersion");
 
-        window.location.href = "../code.html/login.html";
+        window.location.href = "../HTML/login.html";
     });
 }
 

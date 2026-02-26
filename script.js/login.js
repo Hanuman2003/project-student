@@ -5,6 +5,8 @@ const loginMobile = document.getElementById("loginMobile");
 const loginPassword = document.getElementById("loginPassword");
 const loginOtp = document.getElementById("loginOtp");
 const loginSendOtpBtn = document.getElementById("loginSendOtpBtn");
+const loginFullName = document.getElementById("loginFullName");
+const studentNameGroup = document.getElementById("studentNameGroup");
 
 let generatedLoginOTP = "";
 let authenticatedUser = null;
@@ -24,15 +26,24 @@ toggleButtons.forEach(button => {
     });
 });
 
-// ================= RESET IF ROLE CHANGES =================
+// ================= ROLE CHANGE HANDLER =================
 const roleRadios = document.querySelectorAll('input[name="loginRole"]');
 
 roleRadios.forEach(radio => {
     radio.addEventListener("change", function () {
+
         generatedLoginOTP = "";
         authenticatedUser = null;
         loginSendOtpBtn.disabled = false;
         loginOtp.value = "";
+
+        if (this.value === "student") {
+            studentNameGroup.style.display = "flex";
+            loginFullName.required = true;
+        } else {
+            studentNameGroup.style.display = "none";
+            loginFullName.required = false;
+        }
     });
 });
 
@@ -51,20 +62,10 @@ loginSendOtpBtn.addEventListener("click", function () {
     const enteredEmail = loginEmail.value.trim();
     const enteredMobile = loginMobile.value.trim();
     const enteredPassword = loginPassword.value.trim();
+    const enteredName = loginFullName.value.trim();
 
-    if (enteredEmail === "" && enteredMobile === "") {
-        alert("Enter Email or Mobile Number.");
-        return;
-    }
-
-    // ✅ Format validation
-    if (enteredEmail !== "" && !emailPattern.test(enteredEmail)) {
-        alert("Invalid Email format.");
-        return;
-    }
-
-    if (enteredMobile !== "" && !mobilePattern.test(enteredMobile)) {
-        alert("Invalid 10-digit Mobile Number.");
+    if (!mobilePattern.test(enteredMobile)) {
+        alert("Enter valid 10-digit mobile number.");
         return;
     }
 
@@ -73,29 +74,51 @@ loginSendOtpBtn.addEventListener("click", function () {
         return;
     }
 
-    // ✅ Strict identity matching
     let foundUser = null;
 
-    if (enteredEmail !== "" && enteredMobile !== "") {
+    // ================= STUDENT LOGIN =================
+    if (selectedRole.value === "student") {
+
+        if (enteredName === "") {
+            alert("Enter Full Name.");
+            return;
+        }
+
         foundUser = users.find(user =>
-            user.role === selectedRole.value &&
-            user.email === enteredEmail &&
-            user.mobile === enteredMobile
-        );
-    } else if (enteredEmail !== "") {
-        foundUser = users.find(user =>
-            user.role === selectedRole.value &&
-            user.email === enteredEmail
-        );
-    } else {
-        foundUser = users.find(user =>
-            user.role === selectedRole.value &&
+            user.role === "student" &&
+            user.firstName === enteredName &&
             user.mobile === enteredMobile
         );
     }
 
+    // ================= PARENT LOGIN =================
+    else if (selectedRole.value === "parent") {
+
+        if (enteredEmail === "" && enteredMobile === "") {
+            alert("Enter Email or Mobile.");
+            return;
+        }
+
+        foundUser = users.find(user =>
+            user.role === "parent" &&
+            (
+                user.email === enteredEmail ||
+                user.mobile === enteredMobile
+            )
+        );
+    }
+
+    // ================= ADMIN LOGIN =================
+    else if (selectedRole.value === "admin") {
+
+        foundUser = users.find(user =>
+            user.role === "admin" &&
+            user.email === enteredEmail
+        );
+    }
+
     if (!foundUser) {
-        alert("No registered account found with selected role.");
+        alert("User not found.");
         return;
     }
 
@@ -119,7 +142,7 @@ loginForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     if (!authenticatedUser) {
-        alert("Please verify credentials and generate OTP first.");
+        alert("Generate OTP first.");
         return;
     }
 
@@ -131,27 +154,14 @@ loginForm.addEventListener("submit", function (e) {
     localStorage.setItem("userRole", authenticatedUser.role);
 
     if (authenticatedUser.role === "admin") {
-
-        let currentVersion = localStorage.getItem("adminAccessVersion");
-
-        if (!currentVersion) {
-            currentVersion = "1";
-            localStorage.setItem("adminAccessVersion", currentVersion);
-        }
-
-        localStorage.setItem("adminSessionVersion", currentVersion);
-
-        alert("Admin Login Successful!");
         window.location.href = "admin_dashboard.html";
     }
 
     else if (authenticatedUser.role === "parent") {
-        alert("Parent Login Successful!");
         window.location.href = "parent_dashboard.html";
     }
 
     else if (authenticatedUser.role === "student") {
-        alert("Student Login Successful!");
         window.location.href = "student_dashboard.html";
     }
 });

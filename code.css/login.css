@@ -192,6 +192,16 @@ input:focus {
     }
 }
 
+/* ===== STUDENT NAME FIELD (DYNAMIC) ===== */
+
+#studentNameGroup {
+    transition: all 0.3s ease;
+}
+
+#studentNameGroup input {
+    width: 100%;
+}
+
 /* ===== LOGIN ROLE SELECTION ===== */
 
 #loginRoleSelection {

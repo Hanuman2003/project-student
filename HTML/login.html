@@ -29,7 +29,7 @@
 
 <form id="loginForm" autocomplete="off">
 
-    <!-- ================= ROLE SELECTION (TOP) ================= -->
+    <!-- ================= ROLE SELECTION ================= -->
     <fieldset id="loginRoleSelection">
         <legend>Select Your Role</legend>
 
@@ -48,7 +48,13 @@
             <label for="loginStudent">Student</label>
         </div>
     </fieldset>
-    <!-- ========================================================= -->
+
+    <!-- ================= STUDENT FULL NAME (DYNAMIC) ================= -->
+    <div class="form-group" id="studentNameGroup" style="display: none;">
+        <label for="loginFullName">Full Name</label>
+        <input type="text" id="loginFullName" name="loginFullName">
+    </div>
+    <!-- ================================================================ -->
 
     <!-- Email -->
     <div class="form-group">

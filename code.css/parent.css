@@ -1,0 +1,140 @@
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ================= BODY ================= */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b, #111827);
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* ================= MAIN CONTAINER ================= */
+.parent-dashboard {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ================= HEADER ================= */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: #38bdf8;
+}
+
+#logoutBtn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #ef4444;
+    color: #fff;
+    cursor: pointer;
+    min-height: 40px;
+}
+
+#logoutBtn:hover {
+    opacity: 0.85;
+}
+
+/* ================= STUDENT SELECTOR ================= */
+.student-selector-section {
+    margin-bottom: 20px;
+}
+
+#studentSelector {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 14px;
+}
+
+/* ================= NAVIGATION BUTTONS ================= */
+.navigation-section {
+    display: flex;
+    flex-direction: column;   /* Mobile default */
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.nav-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    min-height: 44px; /* Mobile touch standard */
+    transition: 0.3s ease;
+}
+
+.nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59,130,246,0.4);
+}
+
+.nav-btn.active {
+    background: #38bdf8;
+}
+
+/* ================= CONTENT AREA ================= */
+.content-area {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.welcome-card h2 {
+    margin-bottom: 8px;
+}
+
+.welcome-card p {
+    opacity: 0.8;
+}
+
+/* ================= TABLET VIEW ================= */
+@media (min-width: 600px) {
+
+    .navigation-section {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .nav-btn {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+/* ================= DESKTOP VIEW ================= */
+@media (min-width: 900px) {
+
+    .dashboard-header h1 {
+        font-size: 24px;
+    }
+
+    .nav-btn {
+        flex: 1 1 calc(33.33% - 10px);
+    }
+
+    .parent-dashboard {
+        padding: 40px;
+    }
+}

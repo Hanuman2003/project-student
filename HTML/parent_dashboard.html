@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parent Dashboard | AKT Learning Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../code.css/parent.css">
+
+    <!-- JS -->
+    <script src="../script.js/parent.js" defer></script>
+</head>
+
+<body>
+
+<!-- ===== SESSION PROTECTION ===== -->
+<script>
+    const role = localStorage.getItem("userRole");
+    if (role !== "parent") {
+        window.location.href = "login.html";
+    }
+</script>
+
+<div class="parent-dashboard">
+
+    <!-- ===== HEADER ===== -->
+    <header class="dashboard-header">
+        <h1>Parent Dashboard</h1>
+        <button id="logoutBtn">Logout</button>
+    </header>
+
+    <!-- ===== STUDENT SELECTOR ===== -->
+    <section class="student-selector-section">
+        <select id="studentSelector">
+            <option value="">Select Student</option>
+        </select>
+    </section>
+
+    <!-- ===== NAVIGATION BUTTONS ===== -->
+    <section class="navigation-section">
+
+        <button class="nav-btn" data-section="studentInfo">
+            Student Information
+        </button>
+
+        <button class="nav-btn" data-section="progress">
+            Progress Report
+        </button>
+
+        <button class="nav-btn" data-section="performance">
+            Performance
+        </button>
+
+        <button class="nav-btn" data-section="marks">
+            Marks
+        </button>
+
+        <button class="nav-btn" data-section="progressEmail">
+            Progress Transfer (Email)
+        </button>
+
+        <button class="nav-btn" data-section="marksMessage">
+            Subject-wise Marks Transfer
+        </button>
+
+        <button class="nav-btn" data-section="studyActivity">
+            Study Activity
+        </button>
+
+    </section>
+
+    <!-- ===== DYNAMIC CONTENT AREA ===== -->
+    <section id="contentArea" class="content-area">
+        <div class="welcome-card">
+            <h2>Welcome Parent</h2>
+            <p>Select a student and choose a section to view details.</p>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

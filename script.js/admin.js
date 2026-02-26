@@ -75,11 +75,14 @@ if (tableBody) {
     }
 }
 
+
 // ================= LOGOUT =================
 const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
-    logoutBtn.addEventListener("click", function () {
+    logoutBtn.addEventListener("click", function (e) {
+
+        e.preventDefault();   // ⭐ यह जरूरी है
 
         localStorage.removeItem("userRole");
         localStorage.removeItem("adminSessionVersion");

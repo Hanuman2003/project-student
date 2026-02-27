@@ -161,13 +161,13 @@ loginForm.addEventListener("submit", function (e) {
     sessionStorage.setItem("displayName", authenticatedUser.firstName || "");
 
     if (authenticatedUser.role === "admin") {
-        window.location.href = "HTML/admin_dashboard.html";
+        window.location.href = "/project-student/HTML/admin_dashboard.html";
     }
     else if (authenticatedUser.role === "parent") {
-        window.location.href = "HTML/parent_dashboard.html";
+        window.location.href = "/project-student/HTML/parent_dashboard.html";
     }
     else if (authenticatedUser.role === "student") {
-        window.location.href = "HTML/student_dashboard.html";
+        window.location.href = "/project-student/HTML/student_dashboard.html";
     }
 
 });

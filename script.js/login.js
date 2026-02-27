@@ -84,10 +84,11 @@ loginSendOtpBtn.addEventListener("click", function () {
             return;
         }
 
+        // FIXED: Match using role + mobile + password
         foundUser = users.find(user =>
             user.role === "student" &&
-            user.firstName === enteredName &&
-            user.mobile === enteredMobile
+            user.mobile === enteredMobile &&
+            user.password === enteredPassword
         );
     }
 
@@ -124,10 +125,7 @@ loginSendOtpBtn.addEventListener("click", function () {
         return;
     }
 
-    if (foundUser.password !== enteredPassword) {
-        alert("Incorrect password.");
-        return;
-    }
+    // ❌ Removed password check (already matched in student case)
 
     authenticatedUser = foundUser;
 
@@ -153,27 +151,20 @@ loginForm.addEventListener("submit", function (e) {
         return;
     }
 
-    // ================= NEW STRICT SESSION SYSTEM =================
-
     const sessionToken = crypto.randomUUID();
     const activeSessionId = crypto.randomUUID();
 
-    // Store session in sessionStorage (NOT localStorage)
     sessionStorage.setItem("sessionToken", sessionToken);
     sessionStorage.setItem("activeSessionId", activeSessionId);
     sessionStorage.setItem("userRole", authenticatedUser.role);
     sessionStorage.setItem("displayName", authenticatedUser.firstName || "");
 
-    // ================= REDIRECT =================
-
     if (authenticatedUser.role === "admin") {
         window.location.href = "admin_dashboard.html";
     }
-
     else if (authenticatedUser.role === "parent") {
         window.location.href = "parent_dashboard.html";
     }
-
     else if (authenticatedUser.role === "student") {
         window.location.href = "student_dashboard.html";
     }

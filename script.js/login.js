@@ -84,11 +84,9 @@ loginSendOtpBtn.addEventListener("click", function () {
             return;
         }
 
-        // FIXED: Match using role + mobile + password
         foundUser = users.find(user =>
             user.role === "student" &&
-            user.mobile === enteredMobile &&
-            user.password === enteredPassword
+            user.mobile === enteredMobile
         );
     }
 
@@ -125,7 +123,10 @@ loginSendOtpBtn.addEventListener("click", function () {
         return;
     }
 
-    // ❌ Removed password check (already matched in student case)
+    if (foundUser.password !== enteredPassword) {
+        alert("Incorrect password.");
+        return;
+    }
 
     authenticatedUser = foundUser;
 

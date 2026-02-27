@@ -153,29 +153,16 @@ loginForm.addEventListener("submit", function (e) {
         return;
     }
 
-    // ================= STRICT SECURITY SYSTEM =================
+    // ================= NEW STRICT SESSION SYSTEM =================
 
     const sessionToken = crypto.randomUUID();
     const activeSessionId = crypto.randomUUID();
 
-    authenticatedUser.sessionToken = sessionToken;
-    authenticatedUser.activeSessionId = activeSessionId;
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    users = users.map(user =>
-        user.email === authenticatedUser.email &&
-        user.role === authenticatedUser.role
-            ? authenticatedUser
-            : user
-    );
-
-    localStorage.setItem("users", JSON.stringify(users));
-
-    localStorage.setItem("sessionToken", sessionToken);
-    localStorage.setItem("isLoggedIn", "true");
-    localStorage.setItem("loggedInUser", JSON.stringify(authenticatedUser));
-    localStorage.setItem("userRole", authenticatedUser.role);
+    // Store session in sessionStorage (NOT localStorage)
+    sessionStorage.setItem("sessionToken", sessionToken);
+    sessionStorage.setItem("activeSessionId", activeSessionId);
+    sessionStorage.setItem("userRole", authenticatedUser.role);
+    sessionStorage.setItem("displayName", authenticatedUser.firstName || "");
 
     // ================= REDIRECT =================
 
@@ -190,4 +177,5 @@ loginForm.addEventListener("submit", function (e) {
     else if (authenticatedUser.role === "student") {
         window.location.href = "student_dashboard.html";
     }
+
 });

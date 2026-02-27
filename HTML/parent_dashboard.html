@@ -19,10 +19,18 @@
 
 <!-- ===== SESSION PROTECTION ===== -->
 <script>
-    const role = localStorage.getItem("userRole");
-    if (role !== "parent") {
+(function () {
+
+    const role = sessionStorage.getItem("userRole");
+    const token = sessionStorage.getItem("sessionToken");
+    const sessionId = sessionStorage.getItem("activeSessionId");
+
+    if (!role || !token || !sessionId || role !== "parent") {
+        sessionStorage.clear();
         window.location.href = "login.html";
     }
+
+})();
 </script>
 
 <div class="parent-dashboard">

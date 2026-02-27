@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Student - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/student-dashboard.css">
+</head>
+<body>
+
+<header class="header">
+    <h1>Project Student</h1>
+    <button class="logout-btn">Logout</button>
+</header>
+
+<main class="container">
+
+    <section class="card welcome-section">
+        <h2 id="studentName">Welcome</h2>
+        <p>Keep learning and keep growing.</p>
+    </section>
+
+    <section class="card">
+        <h2>Select Your Class</h2>
+        <div class="class-grid">
+            <div class="class-card">Class 5</div>
+            <div class="class-card">Class 6</div>
+            <div class="class-card">Class 7</div>
+            <div class="class-card">Class 8</div>
+            <div class="class-card">Class 9</div>
+            <div class="class-card">Class 10</div>
+        </div>
+    </section>
+
+    <section class="card" id="continueSection" style="display:none;">
+        <h2>Continue Learning</h2>
+        <p id="continueText"></p>
+        <button class="primary-btn" id="resumeBtn">Resume</button>
+    </section>
+
+    <section class="card" id="progressSection" style="display:none;">
+        <h2>Your Progress</h2>
+        <p>Completed: <span id="completedChapters"></span></p>
+        <p>Total Chapters: <span id="totalChapters"></span></p>
+        <p>Progress: <strong><span id="progressPercent"></span>%</strong></p>
+    </section>
+
+    <section class="card">
+        <h2>Notices</h2>
+        <ul>
+            <li>New Test Schedule Released</li>
+            <li>Assignment Deadline Reminder</li>
+        </ul>
+    </section>
+
+</main>
+
+<script src="../js/student-dashboard.js"></script>
+</body>
+</html>
